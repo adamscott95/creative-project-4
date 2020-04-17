@@ -1,9 +1,21 @@
 <template>
   <div id="app">
-    <header id="header">
+    <div class="header">
+      <router-link to="/">
       <h1>Creative Project 4</h1>
-    </header>
-    <router-view />
+      </router-link>
+    </div>
+    <div class="content">
+      <router-view />
+    </div>
+
+    <div class="footer">
+      <router-link to="/enroll">Enroll</router-link>
+      <p></p>
+      <router-link to="/students">Students</router-link>
+      <p></p>
+      <a href="https://github.com/adamscott95/creative-project-4"><p>View my Github Repo here.</p></a>
+    </div>
   </div>
 </template>
 
@@ -16,22 +28,22 @@
   color: #2c3e50;
 }
 
-#header {
-  /* Semi-circle */
-  margin: 0 1em 1em 0;
-  height: 100px;
-  width: 200px;
-  /* Fixed position */
-  position: fixed;
-  z-index: 10000;
-  left: 50%;
-  transform: translate(-50%, 0);
-  /* Color and alignment */
-  background: green;
-  text-align: center;
-  box-shadow: 0 0 0 1em #FFF;
+/* Header */
+.header {
+  display: flex;
+  padding: 10px 100px 0px 100px;
+  background-color: #5BDEFF;
+  color: #1C454F;
+  justify-content: center;
 }
 
+.title {
+  margin-top: 5px;
+}
+
+.title h1 {
+  font-size: 30px;
+}
 #nav {
   padding: 30px;
 }
@@ -43,5 +55,31 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.content {
+  padding: 20px 100px;
+  min-height: 500px;
+}
+
+
+/* Footer */
+.footer {
+  height: 100px;
+  padding: 20px 100px 0px 100px;
+  background: #e3e3e3;
+  font-size: 12px;
+}
+
+.footer a {
+  color: #000;
+}
+
+h1 {
+  font-size: 20px;
+}
+
+h2 {
+  font-size: 14px;
 }
 </style>

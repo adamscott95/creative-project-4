@@ -1,6 +1,7 @@
 <template>
-  <div class="home">
-  </div>
+<div>
+      <h1>Welcome to Hogwarts!</h1>
+</div>
 </template>
 
 <script>
