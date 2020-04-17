@@ -10,9 +10,11 @@
     </div>
 
     <div class="footer">
-      <router-link to="/enroll">Enroll</router-link>
+      <router-link to="/enroll">Enroll a Student</router-link>
       <p></p>
-      <router-link to="/students">Students</router-link>
+      <router-link to="/students">View Students</router-link>
+      <p></p>
+      <router-link to="/addcourse">Add a Course</router-link>
       <p></p>
       <a href="https://github.com/adamscott95/creative-project-4"><p>View my Github Repo here.</p></a>
     </div>

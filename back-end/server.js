@@ -20,7 +20,7 @@ mongoose.connect('mongodb://localhost:27017/hogwarts', {
 // Create a scheme for items in the museum: a title and a path to an image.
 const courseSchema = new mongoose.Schema({
     title: String,
-    teacher: String,
+    professor: String,
     location: String,
     time: String
   });
@@ -42,7 +42,7 @@ const Student = mongoose.model('Student', studentSchema);
 app.post('/api/courses', async (req, res) => {
     const course = new Course({
       title: req.body.title,
-      teacher: req.body.teacher,
+      professor: req.body.professor,
       location: req.body.location,
       time: req.body.time
     });
@@ -77,6 +77,17 @@ app.get('/api/students', async (req, res) => {
     try {
       let students = await Student.find();
       res.send(students);
+    } catch (error) {
+      console.log(error);
+      res.sendStatus(500);
+    }
+  });
+
+// Get a list of all of the items in the museum.
+app.get('/api/courses', async (req, res) => {
+    try {
+      let courses = await Course.find();
+      res.send(courses);
     } catch (error) {
       console.log(error);
       res.sendStatus(500);

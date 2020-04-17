@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Enroll from '../views/Enroll.vue'
 import Students from '../views/Students.vue'
+import AddCourse from '../views/AddCourse.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ Vue.use(VueRouter)
     path:'/students',
     name: 'Students',
     component: Students
+  },
+  {
+    path:'/addcourse',
+    name: 'AddCourse',
+    component: AddCourse
   }
 ]
 

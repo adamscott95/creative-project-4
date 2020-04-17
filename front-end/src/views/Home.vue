@@ -1,15 +1,64 @@
 <template>
 <div>
       <h1>Welcome to Hogwarts!</h1>
+      <p></p>
+      <h1>Courses Offered at Hogwarts:</h1>
+  <section class="course-gallery">
+    <div v-for="course in courses" :key="course.id">
+      <div class="course">
+        <h2>Title: {{course.title}}</h2>
+        <h2>Professor: {{course.professor}}</h2>
+        <h2>Location: {{course.location}}</h2>
+        <h2>Time: {{course.time}}</h2>
+      </div>
+      <p></p>
+    </div>
+  </section>
 </div>
 </template>
 
 <script>
-// @ is an alias to /src
-
+import axios from 'axios';
 export default {
   name: 'Home',
-  components: {
+  data () {
+    return {
+      courses: [],
+    }
+  },
+  created() {
+    this.getCourses();
+  },
+  methods: {
+    async getCourses() {
+      try {
+        let response = await axios.get("/api/courses");
+        this.courses = response.data;
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
+    },
   }
 }
 </script>
+
+<style scoped>
+
+.course {
+    background-color: rgb(225, 250, 215);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    padding: 2%;
+}
+
+.course-gallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+</style>
