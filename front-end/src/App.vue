@@ -69,7 +69,7 @@
 
 /* Footer */
 .footer {
-  height: 100px;
+  height: 120px;
   padding: 20px 100px 0px 100px;
   background: #e3e3e3;
   font-size: 12px;
