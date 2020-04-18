@@ -24,6 +24,14 @@ const courseSchema = new mongoose.Schema({
     location: String,
     time: String
   });
+
+  courseSchema.virtual('id').get(function() {
+  return this._id.toHexString();
+});
+
+courseSchema.set('toJSON', {
+  virtuals: true
+});
   
 // Create a model for courses in the directory.
 const Course = mongoose.model('Course', courseSchema);
@@ -34,6 +42,14 @@ const studentSchema = new mongoose.Schema({
     blood_status: String,
     courses: String
 })
+
+studentSchema.virtual('id').get(function() {
+  return this._id.toHexString();
+});
+
+studentSchema.set('toJSON', {
+  virtuals: true
+});
 
 // Create a model for students in the directory.
 const Student = mongoose.model('Student', studentSchema);
@@ -93,5 +109,29 @@ app.get('/api/courses', async (req, res) => {
       res.sendStatus(500);
     }
   });
+
+app.delete('/api/students/:id', async(req, res) => {
+  try {
+    await Student.deleteOne({
+      _id: req.params.id
+    });
+    res.sendStatus(200);
+  } catch (error) {
+    console.log(error)
+    res.sendStatus(500);
+  }
+});
+
+app.delete('/api/courses/:id', async(req, res) => {
+  try {
+    await Course.deleteOne({
+      _id: req.params.id
+    });
+    res.sendStatus(200);
+  } catch (error) {
+    console.log(error)
+    res.sendStatus(500);
+  }
+});
 
 app.listen(3002, () => console.log('Server listening on port 3002!'));

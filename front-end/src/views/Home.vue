@@ -10,6 +10,9 @@
         <h2>Professor: {{course.professor}}</h2>
         <h2>Location: {{course.location}}</h2>
         <h2>Time: {{course.time}}</h2>
+        <div class="buttons">
+         <button class="button" @click="deleteCourse(course)">Remove</button>
+        </div>
       </div>
       <p></p>
     </div>
@@ -24,6 +27,7 @@ export default {
   data () {
     return {
       courses: [],
+      findCourse: null
     }
   },
   created() {
@@ -34,6 +38,16 @@ export default {
       try {
         let response = await axios.get("/api/courses");
         this.courses = response.data;
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async deleteCourse(course) {
+      try {
+        await axios.delete("/api/courses/" + course._id);
+        this.findCourse = null;
+        this.getCourses();
         return true;
       } catch (error) {
         console.log(error);
@@ -59,6 +73,15 @@ export default {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.button {
+  padding: 10px;
+  margin: 5px;
+  width: 100px;
+  height: 50px;
+  background-color: black;
+  color: white;
 }
 
 </style>

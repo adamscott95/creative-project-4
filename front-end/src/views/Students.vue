@@ -9,6 +9,9 @@
         <h2>Blood Status: {{student.blood_status}}</h2>
         <h2>Courses:</h2>
         <p>{{student.courses}}</p>
+        <div class="buttons">
+         <button class="button" @click="deleteStudent(student)">Remove</button>
+        </div>
       </div>
       <p></p>
     </div>
@@ -17,13 +20,14 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import axios from 'axios';
 export default {
   name: 'Students',
   data () {
     return {
       students: [],
+      findName: "",
+      findStudent: null
     }
   },
   created() {
@@ -34,6 +38,16 @@ export default {
       try {
         let response = await axios.get("/api/students");
         this.students = response.data;
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async deleteStudent(student) {
+      try {
+        await axios.delete("/api/students/" + student._id);
+        this.findStudent = null;
+        this.getStudents();
         return true;
       } catch (error) {
         console.log(error);
@@ -59,6 +73,15 @@ export default {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.button {
+  padding: 10px;
+  margin: 5px;
+  width: 100px;
+  height: 50px;
+  background-color: black;
+  color: white;
 }
 
 </style>

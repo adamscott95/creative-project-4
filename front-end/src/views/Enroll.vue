@@ -13,10 +13,6 @@
         <p></p>
         <button @click="upload">Enroll</button>
       </div>
-      <div class="upload" v-if="addItem">
-        <h2>{{addItem.title}}</h2>
-        <img :src="addItem.path" />
-      </div>
     </div>
 </div>
 </template>
